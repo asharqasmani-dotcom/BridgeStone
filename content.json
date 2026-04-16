@@ -1,0 +1,113 @@
+{
+  "nav": {
+    "brand": "BRIGHTSTONE"
+  },
+  "hero": {
+    "eyebrow": "Property Management Excellence",
+    "title_prefix": "Residential property",
+    "title_italic": "management",
+    "title_suffix": "services",
+    "subtitle": "Welcome to Brightstone — Where our experts deliver innovative and sustainable solutions that empower residential tenants and township communities, elevate living experiences and enhance your property value.",
+    "cta": "Discover the Brightstone Difference"
+  },
+  "services": {
+    "label": "What We Offer",
+    "heading": "Tailored residential management services",
+    "cta": "Schedule a consultation",
+    "items": [
+      {
+        "icon": "operations",
+        "title": "Operations and maintenance",
+        "desc": "Soft services, hard-core management, engineering operations, safety and security management, risk management and planned preventive maintenance."
+      },
+      {
+        "icon": "advisory",
+        "title": "Advisory and consulting",
+        "desc": "Management strategies in development consulting, financial modelling, CAM consulting, HOTO and audits (technical, risk, soft, life cycle assessment, etc.)"
+      },
+      {
+        "icon": "amenities",
+        "title": "Experience and club amenities management",
+        "desc": "Management of amenities, services and curated programs that build and foster community engagement and resident experience."
+      },
+      {
+        "icon": "finance",
+        "title": "Finance & others",
+        "desc": "Integrated strategies for oversight of financial budgets, expense tracking and reporting to governing bodies for informed decision-making."
+      },
+      {
+        "icon": "technology",
+        "title": "Technology",
+        "desc": "Smart building solutions like digital reporting, IoT deployment, predictive analytics, resilient communication and service request platforms."
+      },
+      {
+        "icon": "sustainability",
+        "title": "Sustainability",
+        "desc": "ESG practices, including water conservation, waste management and energy-efficient common area solutions to reduce carbon footprint."
+      },
+      {
+        "icon": "supply-chain",
+        "title": "Sourcing and supply chain management",
+        "desc": "Support in procurement of products and services, AMCs of assets, leveraging economies of scale for quality and budget-friendly operations."
+      },
+      {
+        "icon": "risk",
+        "title": "Risk management & emergency response",
+        "desc": "Preventive maintenance protocols and drills to safeguard residents, mitigate property risks and maintain equipment lifespan."
+      }
+    ]
+  },
+  "quote": {
+    "text": "Elevating residential living through intelligent management, people-first design, and enduring communities.",
+    "attribution": "Brightstone — Residential Property Management"
+  },
+  "difference": {
+    "label": "Our Advantage",
+    "heading": "The Brightstone difference",
+    "cta": "Know more",
+    "items": [
+      {
+        "num": "01",
+        "icon": "team",
+        "title": "Dedicated property management teams",
+        "desc": "Deploy specialized yet multifunctional teams that integrate technology, financial accounting and other services, to deliver seamless operations, proactive maintenance and superior resident experiences.",
+        "featured": false
+      },
+      {
+        "num": "02",
+        "icon": "chart",
+        "title": "Decision making support",
+        "desc": "Management of expenditure against budget for developers / committee to help them make informed decisions.",
+        "featured": false
+      },
+      {
+        "num": "03",
+        "icon": "home",
+        "title": "Resident-focused approach",
+        "desc": "End-to-end property management that elevates the aesthetics and ambiance of the building and lobby to enhance daily living experience.",
+        "featured": true
+      },
+      {
+        "num": "04",
+        "icon": "smart",
+        "title": "Smart building management",
+        "desc": "Leveraging technology to optimize operations that influence resident satisfaction, manage service requests and improve community engagement.",
+        "featured": false
+      }
+    ]
+  },
+  "footer": {
+    "brand": "Brightstone",
+    "copyright": "brightstone.co.in · All rights reserved",
+    "links": [
+      { "label": "Privacy Policy", "url": "#" },
+      { "label": "Term of Use", "url": "#" },
+      { "label": "Legal Policy", "url": "#" },
+      { "label": "Disclaimer", "url": "#" }
+    ]
+  },
+  "contact": {
+    "whatsapp": "https://wa.me/91XXXXXXXXXX",
+    "email": "mailto:hello@brightstone.co.in"
+  }
+}
