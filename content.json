@@ -1,6 +1,12 @@
 {
   "nav": {
-    "brand": "BRIGHTSTONE"
+    "brand": "BRIGHTSTONE",
+    "links": [
+      { "label": "Home", "url": "#hero" },
+      { "label": "About Us", "url": "#" },
+      { "label": "Careers", "url": "#" },
+      { "label": "Contact Us", "url": "#" }
+    ]
   },
   "hero": {
     "eyebrow": "Property Management Excellence",
@@ -8,12 +14,14 @@
     "title_italic": "management",
     "title_suffix": "services",
     "subtitle": "Welcome to Brightstone — Where our experts deliver innovative and sustainable solutions that empower residential tenants and township communities, elevate living experiences and enhance your property value.",
-    "cta": "Discover the Brightstone Difference"
+    "cta": "Discover the Brightstone Difference",
+    "cta_url": "#difference"
   },
   "services": {
     "label": "What We Offer",
     "heading": "Tailored residential management services",
     "cta": "Schedule a consultation",
+    "cta_url": "#",
     "items": [
       {
         "icon": "operations",
@@ -58,13 +66,14 @@
     ]
   },
   "quote": {
-    "text": "Elevating residential living through intelligent management, people-first design, and enduring communities.",
+    "text": "“Elevating residential living through intelligent management, people-first design, and enduring communities.”",
     "attribution": "Brightstone — Residential Property Management"
   },
   "difference": {
     "label": "Our Advantage",
     "heading": "The Brightstone difference",
     "cta": "Know more",
+    "cta_url": "#",
     "items": [
       {
         "num": "01",
@@ -101,13 +110,13 @@
     "copyright": "brightstone.co.in · All rights reserved",
     "links": [
       { "label": "Privacy Policy", "url": "#" },
-      { "label": "Term of Use", "url": "#" },
-      { "label": "Legal Policy", "url": "#" },
-      { "label": "Disclaimer", "url": "#" }
+      { "label": "Term of Use",    "url": "#" },
+      { "label": "Legal Policy",   "url": "#" },
+      { "label": "Disclaimer",     "url": "#" }
     ]
   },
   "contact": {
     "whatsapp": "https://wa.me/91XXXXXXXXXX",
-    "email": "mailto:hello@brightstone.co.in"
+    "email":    "mailto:hello@brightstone.co.in"
   }
 }

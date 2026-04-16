@@ -495,6 +495,15 @@ function arrowSVG() {
   return `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 }
 
+function escapeHTML(value = '') {
+  return String(value)
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#39;');
+}
+
 /* ─── CONTENT LOADER ─────────────────────────────────────────── */
 fetch('content.json')
   .then(r => r.json())
@@ -502,17 +511,26 @@ fetch('content.json')
 
     /* NAV */
     document.getElementById('cms-nav-brand').textContent = d.nav.brand;
-    const navLinks = ['Home','About Us','Careers','Contact Us'];
+    const navLinks = Array.isArray(d.nav.links) && d.nav.links.length
+      ? d.nav.links
+      : [
+          { label: 'Home', url: '#hero' },
+          { label: 'About Us', url: '#' },
+          { label: 'Careers', url: '#' },
+          { label: 'Contact Us', url: '#' }
+        ];
     document.getElementById('cms-nav-links').innerHTML = navLinks
-      .map(l => `<li><a href="#">${l}</a></li>`).join('');
+      .map(l => `<li><a href="${escapeHTML(l.url || '#')}">${escapeHTML(l.label || '')}</a></li>`)
+      .join('');
 
     /* HERO */
     document.getElementById('cms-hero-eyebrow').innerHTML =
-      `<span class="eyebrow-dot" aria-hidden="true"></span>${d.hero.eyebrow}`;
+      `<span class="eyebrow-dot" aria-hidden="true"></span>${escapeHTML(d.hero.eyebrow)}`;
     document.getElementById('cms-hero-title').innerHTML =
-      `${d.hero.title_prefix}<br><em>${d.hero.title_italic}</em> ${d.hero.title_suffix}`;
+      `${escapeHTML(d.hero.title_prefix)}<br><em>${escapeHTML(d.hero.title_italic)}</em> ${escapeHTML(d.hero.title_suffix)}`;
     document.getElementById('cms-hero-subtitle').textContent = d.hero.subtitle;
     const heroCta = document.getElementById('cms-hero-cta');
+    heroCta.href = d.hero.cta_url || '#difference';
     heroCta.innerHTML = d.hero.cta + ' ' + arrowSVG();
 
     /* SERVICES */
@@ -521,10 +539,11 @@ fetch('content.json')
     document.getElementById('cms-service-grid').innerHTML = d.services.items.map(item => `
       <div class="service-card">
         <div class="service-icon-wrap" aria-hidden="true">${iconSVG(item.icon)}</div>
-        <h3 class="service-name">${item.title}</h3>
-        <p class="service-desc">${item.desc}</p>
+        <h3 class="service-name">${escapeHTML(item.title)}</h3>
+        <p class="service-desc">${escapeHTML(item.desc)}</p>
       </div>`).join('');
     const svcCta = document.getElementById('cms-services-cta');
+    svcCta.href = d.services.cta_url || '#';
     svcCta.innerHTML = d.services.cta + ' ' + arrowSVG();
 
     /* QUOTE */
@@ -536,12 +555,13 @@ fetch('content.json')
     document.getElementById('cms-diff-heading').textContent = d.difference.heading;
     document.getElementById('cms-diff-grid').innerHTML = d.difference.items.map(item => `
       <div class="diff-card${item.featured ? ' featured' : ''}">
-        <div class="diff-num" aria-hidden="true">${item.num}</div>
+        <div class="diff-num" aria-hidden="true">${escapeHTML(item.num)}</div>
         <div class="diff-icon-wrap" aria-hidden="true">${iconSVG(item.icon, 22)}</div>
-        <h3 class="diff-title">${item.title}</h3>
-        <p class="diff-body">${item.desc}</p>
+        <h3 class="diff-title">${escapeHTML(item.title)}</h3>
+        <p class="diff-body">${escapeHTML(item.desc)}</p>
       </div>`).join('');
     const diffCta = document.getElementById('cms-diff-cta');
+    diffCta.href = d.difference.cta_url || '#';
     diffCta.innerHTML = d.difference.cta + ' ' + arrowSVG();
 
     /* FOOTER */
@@ -558,7 +578,7 @@ fetch('content.json')
         </div>
       </div>
       <ul class="footer-links">
-        ${d.footer.links.map(l => `<li><a href="${l.url}">${l.label}</a></li>`).join('')}
+        ${d.footer.links.map(l => `<li><a href="${escapeHTML(l.url || '#')}">${escapeHTML(l.label || '')}</a></li>`).join('')}
       </ul>`;
 
     /* FABs */
