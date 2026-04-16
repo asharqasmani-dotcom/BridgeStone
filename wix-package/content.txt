@@ -1,0 +1,254 @@
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  BRIGHTSTONE — WIX CONTENT COPY SHEET
+  Copy-paste ready text for every section
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+═══════════════════════════════════════════════════════
+  SECTION 1 — NAVBAR
+═══════════════════════════════════════════════════════
+
+Logo text:        BRIGHTSTONE
+Menu item 1:      Home
+Menu item 2:      About Us
+Menu item 3:      Careers
+Menu item 4:      Contact Us
+
+
+═══════════════════════════════════════════════════════
+  SECTION 2 — HERO
+═══════════════════════════════════════════════════════
+
+Eyebrow tag:
+Property Management Excellence
+
+Main headline:
+Residential property management services
+
+Subtitle:
+Welcome to Brightstone — Where our experts deliver
+innovative and sustainable solutions that empower
+residential tenants and township communities, elevate
+living experiences and enhance your property value.
+
+CTA Button:
+Discover the Brightstone Difference
+
+
+═══════════════════════════════════════════════════════
+  SECTION 3 — SERVICES
+═══════════════════════════════════════════════════════
+
+Section label:    What We Offer
+Section heading:  Tailored residential management services
+
+---
+Card 1 — Icon: icon-operations.svg
+Title:
+Operations and maintenance
+
+Description:
+Soft services, hard-core management, engineering
+operations, safety and security management, risk
+management and planned preventive maintenance.
+
+---
+Card 2 — Icon: icon-advisory.svg
+Title:
+Advisory and consulting
+
+Description:
+Management strategies in development consulting,
+financial modelling, CAM consulting, HOTO and audits
+(technical, risk, soft, life cycle assessment, etc.)
+
+---
+Card 3 — Icon: icon-amenities.svg
+Title:
+Experience and club amenities management
+
+Description:
+Management of amenities, services and curated programs
+that build and foster community engagement and resident
+experience.
+
+---
+Card 4 — Icon: icon-finance.svg
+Title:
+Finance & others
+
+Description:
+Integrated strategies for oversight of financial
+budgets, expense tracking and reporting to governing
+bodies for informed decision-making.
+
+---
+Card 5 — Icon: icon-technology.svg
+Title:
+Technology
+
+Description:
+Smart building solutions like digital reporting,
+IoT deployment, predictive analytics, resilient
+communication and service request platforms.
+
+---
+Card 6 — Icon: icon-sustainability.svg
+Title:
+Sustainability
+
+Description:
+ESG practices, including water conservation, waste
+management and energy-efficient common area solutions
+to reduce carbon footprint.
+
+---
+Card 7 — Icon: icon-supply-chain.svg
+Title:
+Sourcing and supply chain management
+
+Description:
+Support in procurement of products and services, AMCs
+of assets, leveraging economies of scale for quality
+and budget-friendly operations.
+
+---
+Card 8 — Icon: icon-risk.svg
+Title:
+Risk management & emergency response
+
+Description:
+Preventive maintenance protocols and drills to
+safeguard residents, mitigate property risks and
+maintain equipment lifespan.
+
+---
+CTA Button below grid:
+Schedule a consultation
+
+
+═══════════════════════════════════════════════════════
+  SECTION 4 — QUOTE BAND
+═══════════════════════════════════════════════════════
+
+Quote:
+"Elevating residential living through intelligent
+management, people-first design, and enduring
+communities."
+
+Attribution:
+Brightstone — Residential Property Management
+
+
+═══════════════════════════════════════════════════════
+  SECTION 5 — THE BRIGHTSTONE DIFFERENCE
+═══════════════════════════════════════════════════════
+
+Section label:    Our Advantage
+Section heading:  The Brightstone difference
+
+---
+Card 1 — Number: 01  |  Icon: icon-operations.svg
+Title:
+Dedicated property management teams
+
+Description:
+Deploy specialized yet multifunctional teams that
+integrate technology, financial accounting and other
+services, to deliver seamless operations, proactive
+maintenance and superior resident experiences.
+
+---
+Card 2 — Number: 02  |  Icon: icon-advisory.svg
+Title:
+Decision making support
+
+Description:
+Management of expenditure against budget for developers
+/ committee to help them make informed decisions.
+
+---
+Card 3 — Number: 03  |  Icon: icon-amenities.svg  ★ FEATURED (dark background)
+Title:
+Resident-focused approach
+
+Description:
+End-to-end property management that elevates the
+aesthetics and ambiance of the building and lobby to
+enhance daily living experience.
+
+---
+Card 4 — Number: 04  |  Icon: icon-technology.svg
+Title:
+Smart building management
+
+Description:
+Leveraging technology to optimize operations that
+influence resident satisfaction, manage service
+requests and improve community engagement.
+
+---
+CTA Button below cards:
+Know more
+
+
+═══════════════════════════════════════════════════════
+  SECTION 6 — FOOTER
+═══════════════════════════════════════════════════════
+
+Brand name:       Brightstone
+Copyright line:   brightstone.co.in · All rights reserved
+
+Footer links:
+Privacy Policy
+Term of Use
+Legal Policy
+Disclaimer
+
+
+═══════════════════════════════════════════════════════
+  FLOATING BUTTONS (Master Page)
+═══════════════════════════════════════════════════════
+
+Button 1 — WhatsApp
+  Icon:   icon-whatsapp.svg
+  Color:  #25d366
+  Link:   https://wa.me/91XXXXXXXXXX
+  Note:   Replace XXXXXXXXXX with 10-digit mobile number
+  Example: https://wa.me/919876543210
+
+Button 2 — Quick Message
+  Icon:   icon-message.svg
+  Color:  #e07b2a
+  Link:   mailto:hello@brightstone.co.in
+  Note:   Replace with actual email address
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  DESIGN TOKENS — QUICK REFERENCE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+COLORS
+  Navy (primary):        #0d1f2d
+  Navy mid:              #1a3347
+  Orange (accent):       #e07b2a
+  Orange hover:          #f0952a
+  Orange pale (bg):      #fff3e6
+  White:                 #ffffff
+  Light gray bg:         #f7f9fb
+  Border gray:           #e2e8f0
+  Body text:             #0d1f2d
+  Muted text:            #5a7080
+
+FONTS
+  Headings:  Playfair Display (Bold / Bold Italic)
+  Body:      Inter (Regular 400, Medium 500, SemiBold 600, Bold 700)
+
+SPACING
+  Section padding:       108px top & bottom
+  Max content width:     1240px
+  Card padding:          42px 40px
+  Card border radius:    14px
+  Button border radius:  10px
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
