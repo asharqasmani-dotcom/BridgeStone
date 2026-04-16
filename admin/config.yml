@@ -1,0 +1,84 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images"
+public_folder: "/images"
+
+collections:
+  - name: "site"
+    label: "Website Content"
+    files:
+      - name: "hero"
+        label: "Hero Section"
+        file: "content.json"
+        fields:
+          - label: "Navigation Brand Name"
+            name: "nav"
+            widget: "object"
+            fields:
+              - { label: "Brand Name", name: "brand", widget: "string" }
+          - label: "Hero Section"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { label: "Eyebrow Tag", name: "eyebrow", widget: "string" }
+              - { label: "Title Line 1", name: "title_prefix", widget: "string" }
+              - { label: "Italic Word", name: "title_italic", widget: "string" }
+              - { label: "Title Line 3", name: "title_suffix", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "text" }
+              - { label: "Button Text", name: "cta", widget: "string" }
+          - label: "Services Section"
+            name: "services"
+            widget: "object"
+            fields:
+              - { label: "Section Label", name: "label", widget: "string" }
+              - { label: "Section Heading", name: "heading", widget: "string" }
+              - { label: "Button Text", name: "cta", widget: "string" }
+              - label: "Service Cards"
+                name: "items"
+                widget: "list"
+                fields:
+                  - { label: "Card Title", name: "title", widget: "string" }
+                  - { label: "Card Description", name: "desc", widget: "text" }
+                  - { label: "Icon", name: "icon", widget: "string" }
+          - label: "Quote Band"
+            name: "quote"
+            widget: "object"
+            fields:
+              - { label: "Quote Text", name: "text", widget: "text" }
+              - { label: "Attribution", name: "attribution", widget: "string" }
+          - label: "Difference Section"
+            name: "difference"
+            widget: "object"
+            fields:
+              - { label: "Section Label", name: "label", widget: "string" }
+              - { label: "Section Heading", name: "heading", widget: "string" }
+              - { label: "Button Text", name: "cta", widget: "string" }
+              - label: "Difference Cards"
+                name: "items"
+                widget: "list"
+                fields:
+                  - { label: "Number", name: "num", widget: "string" }
+                  - { label: "Icon", name: "icon", widget: "string" }
+                  - { label: "Card Title", name: "title", widget: "string" }
+                  - { label: "Card Description", name: "desc", widget: "text" }
+                  - { label: "Featured", name: "featured", widget: "boolean", default: false }
+          - label: "Footer"
+            name: "footer"
+            widget: "object"
+            fields:
+              - { label: "Brand Name", name: "brand", widget: "string" }
+              - { label: "Copyright", name: "copyright", widget: "string" }
+              - label: "Footer Links"
+                name: "links"
+                widget: "list"
+                fields:
+                  - { label: "Link Label", name: "label", widget: "string" }
+                  - { label: "URL", name: "url", widget: "string" }
+          - label: "Contact"
+            name: "contact"
+            widget: "object"
+            fields:
+              - { label: "WhatsApp Link", name: "whatsapp", widget: "string" }
+              - { label: "Email Link", name: "email", widget: "string" }
