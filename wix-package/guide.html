@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Brightstone — Wix Rebuild Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --navy: #0d1f2d;
+    --orange: #e07b2a;
+    --green: #22c55e;
+    --blue: #3b82f6;
+    --purple: #8b5cf6;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --border: #e2e8f0;
+    --text: #1e293b;
+    --muted: #64748b;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); font-size:14px; line-height:1.6; }
+
+  /* Header */
+  .header {
+    background: var(--navy);
+    padding: 40px 60px;
+    display: flex; align-items: center; gap: 20px;
+  }
+  .header-icon {
+    width: 48px; height: 48px;
+  }
+  .header-title { color: white; }
+  .header-title h1 { font-size: 26px; font-weight: 700; letter-spacing: 0.5px; }
+  .header-title p { color: rgba(255,255,255,0.5); font-size: 13px; margin-top: 4px; }
+
+  /* Progress bar */
+  .progress-bar {
+    background: white;
+    border-bottom: 1px solid var(--border);
+    padding: 16px 60px;
+    display: flex; gap: 6px; align-items: center; flex-wrap: wrap;
+  }
+  .prog-step {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.5px;
+    color: var(--muted); cursor: default;
+  }
+  .prog-step .dot {
+    width: 22px; height: 22px; border-radius: 50%;
+    background: var(--border); color: var(--muted);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; font-weight: 700;
+  }
+  .prog-step.active .dot { background: var(--orange); color: white; }
+  .prog-step.active { color: var(--orange); }
+  .prog-sep { color: var(--border); font-size: 16px; }
+
+  /* Layout */
+  .main { max-width: 1100px; margin: 0 auto; padding: 48px 40px; }
+
+  /* Before you start */
+  .before-box {
+    background: linear-gradient(135deg, #fff7ed, #fff);
+    border: 1.5px solid #fed7aa;
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin-bottom: 48px;
+  }
+  .before-box h2 { font-size: 16px; font-weight: 700; color: var(--orange); margin-bottom: 16px; display:flex; align-items:center; gap:8px; }
+  .before-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .before-item {
+    background: white;
+    border: 1px solid #fed7aa;
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .before-item strong { display: block; font-size: 12px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+  .before-item span { font-size: 12px; color: var(--muted); }
+  .color-swatch {
+    display: inline-block;
+    width: 14px; height: 14px;
+    border-radius: 3px;
+    vertical-align: middle;
+    margin-right: 5px;
+    border: 1px solid rgba(0,0,0,0.1);
+  }
+  .chip {
+    display: inline-block;
+    background: #f1f5f9;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 2px 8px;
+    font-size: 11px;
+    font-weight: 600;
+    font-family: monospace;
+    color: var(--navy);
+    margin: 2px 2px 2px 0;
+  }
+
+  /* Section card */
+  .section-card {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 14px;
+    margin-bottom: 32px;
+    overflow: hidden;
+  }
+  .section-header {
+    padding: 20px 28px;
+    display: flex; align-items: center; gap: 16px;
+    border-bottom: 1.5px solid var(--border);
+    cursor: pointer;
+    user-select: none;
+  }
+  .section-header:hover { background: #fafbfc; }
+  .sec-badge {
+    width: 36px; height: 36px; border-radius: 9px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 800; flex-shrink: 0;
+    color: white;
+  }
+  .sec-title { flex: 1; }
+  .sec-title h3 { font-size: 15px; font-weight: 700; }
+  .sec-title p  { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .sec-toggle { color: var(--muted); font-size: 18px; }
+  .section-body { padding: 28px; }
+
+  /* Steps */
+  .steps { list-style: none; }
+  .steps li {
+    display: flex; gap: 14px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .steps li:last-child { border-bottom: none; }
+  .step-num {
+    width: 26px; height: 26px; border-radius: 50%;
+    background: var(--navy); color: white;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700; flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .step-content { flex: 1; }
+  .step-content strong { display: block; font-size: 13px; font-weight: 600; margin-bottom: 3px; }
+  .step-content p { font-size: 12.5px; color: var(--muted); }
+  .step-content .path {
+    display: inline-flex; align-items: center; gap: 4px;
+    background: #f1f5f9; border: 1px solid var(--border);
+    border-radius: 5px; padding: 3px 9px;
+    font-size: 11px; font-weight: 600; color: var(--navy);
+    margin: 4px 0; font-family: monospace;
+  }
+  .step-content .path span { color: var(--muted); }
+  .step-content .path .arr { color: var(--orange); }
+
+  /* Content blocks */
+  .content-block {
+    background: #f8fafc;
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--orange);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-top: 10px;
+  }
+  .content-block label {
+    display: block; font-size: 10px; font-weight: 700;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--orange); margin-bottom: 6px;
+  }
+  .content-block p, .content-block pre {
+    font-size: 12.5px; color: var(--text);
+    white-space: pre-wrap; line-height: 1.6;
+  }
+
+  /* Setting rows */
+  .settings-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+  .settings-table th {
+    background: #f1f5f9; font-size: 10px; font-weight: 700;
+    letter-spacing: 1px; text-transform: uppercase;
+    padding: 8px 12px; text-align: left; color: var(--muted);
+    border-bottom: 1px solid var(--border);
+  }
+  .settings-table td {
+    padding: 9px 12px; font-size: 12.5px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .settings-table tr:last-child td { border-bottom: none; }
+  .val { font-family: monospace; font-weight: 600; font-size: 12px; color: var(--navy); }
+
+  /* Color pill */
+  .cpill {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: white; border: 1px solid var(--border);
+    border-radius: 100px; padding: 3px 10px 3px 5px;
+    font-size: 11px; font-weight: 600; font-family: monospace;
+  }
+  .cpill-dot { width: 14px; height: 14px; border-radius: 50%; }
+
+  /* Tip box */
+  .tip {
+    display: flex; gap: 10px; align-items: flex-start;
+    background: #f0f9ff; border: 1px solid #bae6fd;
+    border-radius: 8px; padding: 12px 16px; margin-top: 12px;
+    font-size: 12.5px; color: #0369a1;
+  }
+  .tip-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+
+  .warn {
+    display: flex; gap: 10px; align-items: flex-start;
+    background: #fffbeb; border: 1px solid #fde68a;
+    border-radius: 8px; padding: 12px 16px; margin-top: 12px;
+    font-size: 12.5px; color: #92400e;
+  }
+
+  /* Icon grid */
+  .icon-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+    margin-top: 10px;
+  }
+  .icon-item {
+    background: #f8fafc; border: 1px solid var(--border);
+    border-radius: 8px; padding: 14px 12px;
+    text-align: center;
+  }
+  .icon-item svg { width: 28px; height: 28px; stroke: var(--orange); fill:none; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round; }
+  .icon-item p { font-size: 10px; font-weight: 600; color: var(--muted); margin-top: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  /* FAB section */
+  .fab-preview {
+    display: flex; gap: 12px; margin-top: 12px;
+  }
+  .fab-btn {
+    display: flex; align-items: center; gap: 8px;
+    padding: 10px 18px; border-radius: 8px;
+    font-size: 12px; font-weight: 700; color: white;
+    font-family: 'Inter', sans-serif;
+  }
+  .fab-btn.wa  { background: #25d366; }
+  .fab-btn.msg { background: var(--orange); }
+
+  /* Footer note */
+  .footer-note {
+    background: var(--navy); color: rgba(255,255,255,0.6);
+    text-align: center; padding: 24px;
+    font-size: 12px; margin-top: 48px; border-radius: 12px;
+  }
+  .footer-note strong { color: white; }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+  <svg class="header-icon" viewBox="0 0 48 48" fill="none">
+    <path d="M24 2L42 13V35L24 46L6 35V13L24 2Z" fill="#e07b2a"/>
+    <path d="M24 10L36 17V31L24 38L12 31V17L24 10Z" fill="#0d1f2d"/>
+    <path d="M24 18L29 21V27L24 30L19 27V21L24 18Z" fill="#e07b2a"/>
+  </svg>
+  <div class="header-title">
+    <h1>Brightstone — Wix Rebuild Guide</h1>
+    <p>Step-by-step instructions to recreate the homepage in Wix Editor</p>
+  </div>
+</div>
+
+<!-- Progress -->
+<div class="progress-bar">
+  <div class="prog-step active"><div class="dot">1</div> Setup</div>
+  <span class="prog-sep">›</span>
+  <div class="prog-step active"><div class="dot">2</div> Navbar</div>
+  <span class="prog-sep">›</span>
+  <div class="prog-step active"><div class="dot">3</div> Hero</div>
+  <span class="prog-sep">›</span>
+  <div class="prog-step active"><div class="dot">4</div> Services</div>
+  <span class="prog-sep">›</span>
+  <div class="prog-step active"><div class="dot">5</div> Quote Band</div>
+  <span class="prog-sep">›</span>
+  <div class="prog-step active"><div class="dot">6</div> Difference</div>
+  <span class="prog-sep">›</span>
+  <div class="prog-step active"><div class="dot">7</div> Footer</div>
+  <span class="prog-sep">›</span>
+  <div class="prog-sep active"><div class="dot">8</div> FABs</div>
+</div>
+
+  <!-- ── BEFORE YOU START ────────────────────────────────── -->
+  <div class="before-box">
+    <h2>⚡ Before you start — Design tokens</h2>
+    <div class="before-grid">
+      <div class="before-item">
+        <strong>Brand Colors</strong>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:6px;">
+          <span class="cpill"><span class="cpill-dot" style="background:#0d1f2d;"></span>#0d1f2d</span>
+          <span class="cpill"><span class="cpill-dot" style="background:#1a3347;"></span>#1a3347</span>
+          <span class="cpill"><span class="cpill-dot" style="background:#e07b2a;"></span>#e07b2a</span>
+          <span class="cpill"><span class="cpill-dot" style="background:#f0952a;"></span>#f0952a</span>
+          <span class="cpill"><span class="cpill-dot" style="background:#ffffff;border:1px solid #e2e8f0;"></span>#ffffff</span>
+          <span class="cpill"><span class="cpill-dot" style="background:#f7f9fb;border:1px solid #e2e8f0;"></span>#f7f9fb</span>
+        </div>
+      </div>
+      <div class="before-item">
+        <strong>Fonts — add both in Wix Theme Manager</strong>
+        <div style="margin-top:6px;">
+          <span class="chip">Playfair Display</span> — Headings &amp; titles<br/>
+          <span class="chip">Inter</span> — Body text, labels, nav<br/>
+          <div class="tip" style="margin-top:8px;">
+            <span class="tip-icon">ℹ</span>
+            Wix → <strong>Theme Manager → Fonts → Add Google Font</strong> → search each name
+          </div>
+        </div>
+      </div>
+      <div class="before-item">
+        <strong>Wix Template to start with</strong>
+        <span>Use a <strong>Blank Template</strong> — completely empty canvas. Do NOT use a pre-made template as it adds unwanted sections.</span>
+      </div>
+      <div class="before-item">
+        <strong>Page settings</strong>
+        <span>Page background → <span class="chip">#ffffff</span> &nbsp;|&nbsp; Page width → <span class="chip">1240px</span> max &nbsp;|&nbsp; Hide Wix default header ✓</span>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══ SECTION 1: NAVBAR ══════════════════════════════════ -->
+  <div class="section-card">
+    <div class="section-header">
+      <div class="sec-badge" style="background:#0d1f2d;">1</div>
+      <div class="sec-title">
+        <h3>Navigation Bar</h3>
+        <p>Sticky top bar — Logo left, menu links right</p>
+      </div>
+    </div>
+    <div class="section-body">
+      <ol class="steps">
+        <li>
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <strong>Add a Header strip</strong>
+            <p>In Wix Editor → <span class="path">Add <span class="arr">›</span> Section <span class="arr">›</span> Header</span>. Set background color to <span class="chip">#0d1f2d</span>. Set height to <span class="chip">70px</span>.</p>
+          </div>
+        </li>
+        <li>
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <strong>Enable sticky / fixed header</strong>
+            <p>Right-click the header strip → <span class="path">Behaviors <span class="arr">›</span> Scroll Effect <span class="arr">›</span> Fixed</span>. This keeps the nav pinned as user scrolls.</p>
+          </div>
+        </li>
+        <li>
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <strong>Add the Brightstone logo</strong>
+            <p><span class="path">Add <span class="arr">›</span> Image</span> → upload <code>logo.svg</code> from the icons folder. Place it left side. Set width <span class="chip">38px</span>. Next to it add a Text element:</p>
+            <div class="content-block">
+              <label>Logo text</label>
+              <p>BRIGHTSTONE</p>
+            </div>
+            <table class="settings-table" style="margin-top:10px;">
+              <tr><th>Property</th><th>Value</th></tr>
+              <tr><td>Font</td><td><span class="val">Inter Bold</span></td></tr>
+              <tr><td>Size</td><td><span class="val">17px</span></td></tr>
+              <tr><td>Color</td><td><span class="val">#ffffff</span></td></tr>
+              <tr><td>Letter spacing</td><td><span class="val">2.5px</span></td></tr>
+              <tr><td>Transform</td><td><span class="val">Uppercase</span></td></tr>
+            </table>
+          </div>
+        </li>
+        <li>
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <strong>Add navigation menu</strong>
+            <p><span class="path">Add <span class="arr">›</span> Menu <span class="arr">›</span> Horizontal Menu</span>. Place it on the right side of the header.</p>
+            <div class="content-block">
+              <label>Menu items</label>
+              <p>Home | About Us | Careers | Contact Us</p>
+            </div>
+            <table class="settings-table" style="margin-top:10px;">
+              <tr><th>Property</th><th>Value</th></tr>
+              <tr><td>Font</td><td><span class="val">Inter SemiBold</span></td></tr>
+              <tr><td>Size</td><td><span class="val">11.5px</span></td></tr>
+              <tr><td>Color (default)</td><td><span class="val">rgba(255,255,255,0.72)</span></td></tr>
+              <tr><td>Color (hover)</td><td><span class="val">#ffffff</span></td></tr>
+              <tr><td>Letter spacing</td><td><span class="val">1.8px</span></td></tr>
+              <tr><td>Transform</td><td><span class="val">Uppercase</span></td></tr>
+              <tr><td>Underline on hover</td><td><span class="val">Yes — color #e07b2a</span></td></tr>
+            </table>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </div>
+
+
+  <!-- ═══ SECTION 2: HERO ═══════════════════════════════════ -->
+  <div class="section-card">
+    <div class="section-header">
+      <div class="sec-badge" style="background:#e07b2a;">2</div>
+      <div class="sec-title">
+        <h3>Hero Section</h3>
+        <p>Full-height dark banner — headline, subtitle, CTA button</p>
+      </div>
+    </div>
+    <div class="section-body">
+      <ol class="steps">
+        <li>
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <strong>Add a full-width Strip</strong>
+            <p><span class="path">Add <span class="arr">›</span> Section <span class="arr">›</span> Strip</span>. Set height to <span class="chip">100vh</span> (or 700px minimum). Background color: <span class="chip">#0d1f2d</span>.</p>
+          </div>
+        </li>
+        <li>
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <strong>Add background gradient overlay</strong>
+            <p>Strip settings → Background → Gradient. Set a subtle gradient from <span class="chip">#07111c</span> (top-left) to <span class="chip">#0f2035</span> (center) to <span class="chip">#0b1a28</span> (bottom). Opacity 100%.</p>
+            <div class="tip"><span class="tip-icon">💡</span> You can also add a dark city photo from Wix's free stock library and overlay it with a dark color strip at 85% opacity for a richer look.</div>
+          </div>
+        </li>
+        <li>
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <strong>Add eyebrow label (small tag above title)</strong>
+            <div class="content-block">
+              <label>Eyebrow text</label>
+              <p>Property Management Excellence</p>
+            </div>
+            <table class="settings-table" style="margin-top:10px;">
+              <tr><th>Property</th><th>Value</th></tr>
+              <tr><td>Font</td><td><span class="val">Inter SemiBold</span></td></tr>
+              <tr><td>Size</td><td><span class="val">11px</span></td></tr>
+              <tr><td>Color</td><td><span class="val">#f0952a</span></td></tr>
+              <tr><td>Letter spacing</td><td><span class="val">2px</span></td></tr>
+              <tr><td>Transform</td><td><span class="val">Uppercase</span></td></tr>
+              <tr><td>Border</td>
+                <td><span class="val">1px solid rgba(224,123,42,0.24)</span></td></tr>
+              <tr><td>Padding</td><td><span class="val">6px 14px</span></td></tr>
+              <tr><td>Background</td><td><span class="val">rgba(224,123,42,0.08)</span></td></tr>
+            </table>
+          </div>
+        </li>
+        <li>
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <strong>Add main headline</strong>
+            <div class="content-block">
+              <label>Headline</label>
+              <p>Residential property management services</p>
+            </div>
+            <table class="settings-table" style="margin-top:10px;">
+              <tr><th>Property</th><th>Value</th></tr>
+              <tr><td>Font</td><td><span class="val">Playfair Display, Bold, 700</span></td></tr>
+              <tr><td>Size</td><td><span class="val">64px</span></td></tr>
+              <tr><td>Color</td><td><span class="val">#ffffff</span></td></tr>
+              <tr><td>Line height</td><td><span class="val">1.12</span></td></tr>
+              <tr><td>Max width</td><td><span class="val">760px</span></td></tr>
+              <tr><td>Margin</td><td><span class="val">20px below eyebrow</span></td></tr>
+            </table>
+          </div>
+        </li>
+        <li>
+          <div class="step-num">5</div>
+          <div class="step-content">
+            <strong>Add subtitle below headline</strong>
+            <div class="content-block">
+              <label>Subtitle</label>
+              <p>Welcome to Brightstone — Where our experts deliver innovative and sustainable solutions that empower residential tenants and township communities, elevate living experiences and enhance your property value.</p>
+            </div>
+            <table class="settings-table" style="margin-top:10px;">
+              <tr><th>Property</th><th>Value</th></tr>
+              <tr><td>Font</td><td><span class="val">Inter Regular, 400</span></td></tr>
+              <tr><td>Size</td><td><span class="val">18px</span></td></tr>
+              <tr><td>Color</td><td><span class="val">rgba(255,255,255,0.72)</span></td></tr>
+              <tr><td>Max width</td><td><span class="val">640px</span></td></tr>
+              <tr><td>Line height</td><td><span class="val">1.8</span></td></tr>
+              <tr><td>Margin top</td><td><span class="val">26px</span></td></tr>
+            </table>
+          </div>
+        </li>
+        <li>
+          <div class="step-num">6</div>
+          <div class="step-content">
+            <strong>Add call-to-action button</strong>
+            <div class="content-block">
+              <label>CTA text</label>
+              <p>Discover the Brightstone Difference</p>
+            </div>
+            <table class="settings-table" style="margin-top:10px;">
+              <tr><th>Property</th><th>Value</th></tr>
+              <tr><td>Type</td><td><span class="val">Filled button</span></td></tr>
+              <tr><td>Font</td><td><span class="val">Inter SemiBold, 600</span></td></tr>
+              <tr><td>Size</td><td><span class="val">13px</span></td></tr>
+              <tr><td>Background</td><td><span class="val">#e07b2a</span></td></tr>
+              <tr><td>Hover bg</td><td><span class="val">#f0952a</span></td></tr>
+              <tr><td>Text color</td><td><span class="val">#ffffff</span></td></tr>
+              <tr><td>Padding</td><td><span class="val">14px 28px</span></td></tr>
+              <tr><td>Border radius</td><td><span class="val">10px</span></td></tr>
+              <tr><td>Margin top</td><td><span class="val">36px</span></td></tr>
+            </table>
+           <div class="tip"><span class="tip-icon">✓</span> Link this button to the next section using an anchor (to the "Our Advantage" section).</div>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </div>
+
+
+  <!-- ═══ SECTION 3: SERVICES ══════════════════════════════ -->
+  <div class="section-card">
+    <div class="section-header">
+      <div class="sec-badge" style="background:#3b82f6;">3</div>
+      <div class="sec-title">
+        <h3>Services Section</h3>
+        <p>2-row grid of 8 service cards</p>
+      </div>
+    </div>
+    <div class="section-body">
+      <ol class="steps">
+        <li>
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <strong>Add a new strip section below the hero</strong>
+            <p>Background: <span class="chip">#ffffff</span>. Padding: <span class="chip">108px 0</span> (top and bottom). Center content area width at max <span class="chip">1240px</span>.</p>
+          </div>
+        </li>
+        <li>
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <strong>Add section label + heading</strong>
+            <div class="content-block">
+              <label>Section label</label>
+              <p>What We Offer</p>
+            </div>
+            <div class="content-block" style="margin-top:8px;">
+              <label>Section heading</label>
+              <p>Tailored residential management services</p>
+            </div>
+            <table class="settings-table" style="margin-top:10px;">
+              <tr><th>Text</th><th>Style</th></tr>
+              <tr><td>Label</td><td>Inter SemiBold, 11px, #e07b2a, uppercase, 2px letter-spacing</td></tr>
+              <tr><td>Heading</td><td>Playfair Display, Bold, 48px, #0d1f2d</td></tr>
+              <tr><td>Margin</td><td>Label: 10px below top, Heading: 14px below label</td></tr>
+            </table>
+          </div>
+        </li>
+        <li>
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <strong>Build the card grid</strong>
+            <p>Create a strip\or layout with <span class="chip">4</span> columns and <span class="chip">2</span> rows. Card gap: <span class="chip">22px</span>. All cards: background <span class="chip">#ffffff</span>, border <span class="chip">1px solid #e2e8f0</span>, border radius <span class="chip">14px</span>, padding <span class="chip">42px 40px</span>.</p>
+          </div>
+        </li>
+        <li>
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <strong>Fill each card with the correct content</strong>
+            <div class="tip"><span class="tip-icon">ℹ</span> Upload the corresponding SVG icon from the icons folder and place it above the title in each card. Icon size: <span class="chip">48×48px</span>.</div>
+            <div class="content-block">
+              <label>Card 1 — Operations and maintenance</label>
+              <p>Soft services, hard-core management, engineering operations, safety and security management, risk management and planned preventive maintenance.</p>
+            </div>
+            <div class="content-block" style="margin-top:8px;">
+              <label>Card 2 — Advisory and consulting</label>
+              <p>Management strategies in development consulting, financial modelling, CAM consulting, HOTO and audits (technical, risk, soft, life cycle assessment, etc.).</p>
+            </div>
+            <div class="content-block" style="margin-top:8px;">
+              <label>Card 3 — Experience and club amenities management</label>
+              <p>Management of amenities, services and curated programs that build and foster community engagement and resident experience.</p>
+            </div>
+            <div class="content-block" style="margin-top:8px;">
+              <label>Card 4 — Finance & others</label>
+              <p>Integrated strategies for oversight of financial budgets, expense tracking and reporting to governing bodies for informed decision-making.</p>
+            </div>
+            <div class="content-block" style="margin-top:8px;">
+              <label>Card 5 — Technology</label>
+              <p>Smart building solutions like digital reporting, IoT deployment, predictive analytics, resilient communication and service request platforms.</p>
+            </div>
+            <div class="content-block" style="margin-top:8px;">
+              <label>Card 6 — Sustainability</label>
+              <p>ESG practices, including water conservation, waste management and energy-efficient common area solutions to reduce carbon footprint.</p>
+            </div>
+            <div class="content-block" style="margin-top:8px;">
+              <label>Card 7 — Sourcing and supply chain management</label>
+              <p>Support in procurement of products and services, AMCs of assets, leveraging economies of scale for quality and budget-friendly operations.</p>
+            </div>
+            <div class="content-block" style="margin-top:8px;">
+              <label>Card 8 — Risk management & emergency response</label>
+              <p>Preventive maintenance protocols and drills to safeguard residents, mitigate property risks and maintain equipment lifespan.</p>
+            </div>
+            <tip class="tip"><span class="tip-icon">✓</span> Inside each card: icon on top → 16px space → title → 14px space → Description.</div>
+          </div>
+        </li>
+        <li>
+          <div class="step-num">7?ܢi��֫��
