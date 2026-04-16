@@ -201,12 +201,388 @@
     .service-name { font-size:16px; font-weight:600; color:var(--navy); margin-bottom:11px; line-height:1.35; }
     .service-desc { font-size:13.5px; line-height:1.72; color:var(--gray-600); }
     .services-cta { display:flex; justify-content:center; margin-top:60px; }
+
+    /* ── PROPERTY BAND ──────────────────────────────────────── */
+    .property-band { position:relative; height:420px; overflow:hidden; background:var(--navy-mid); }
+    .property-band-bg {
+      position:absolute; inset:0;
+      background:
+        linear-gradient(to right,rgba(13,31,45,0.92) 30%,rgba(13,31,45,0.4) 100%),
+        repeating-linear-gradient(90deg,rgba(255,255,255,0.015) 0px,rgba(255,255,255,0.015) 1px,transparent 1px,transparent 60px);
+    }
+    .property-band svg.house-art { position:absolute; right:0; bottom:0; height:100%; width:65%; opacity:0.18; }
+    .property-band-content {
+      position:relative; z-index:2; max-width:1240px; margin:0 auto; padding:0 64px;
+      height:100%; display:flex; flex-direction:column; justify-content:center;
+    }
+    .property-band-content blockquote {
+      font-family:'Playfair Display',Georgia,serif;
+      font-size:clamp(22px,2.8vw,36px); font-style:italic;
+      color:var(--white); max-width:560px; line-height:1.42; margin-bottom:28px;
+    }
+    .property-band-content cite {
+      display:flex; align-items:center; gap:14px; font-style:normal;
+      color:rgba(255,255,255,0.55); font-size:12px; font-weight:600;
+      letter-spacing:1.6px; text-transform:uppercase;
+    }
+    .property-band-content cite::before { content:''; width:36px; height:1.5px; background:var(--orange); }
+
+    /* ── DIFFERENCE ─────────────────────────────────────────── */
+    .difference { padding:108px 0; background:var(--gray-50); }
+    .difference-header { margin-bottom:56px; }
+    .diff-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:22px; }
+    .diff-card {
+      background:var(--white); border-radius:14px; padding:40px 30px 36px;
+      position:relative; overflow:hidden;
+      transition:transform var(--transition),box-shadow var(--transition);
+    }
+    .diff-card::after {
+      content:''; position:absolute; bottom:0; left:0; right:0; height:3px;
+      background:linear-gradient(90deg,var(--orange),var(--orange-2));
+      transform:scaleX(0); transform-origin:left; transition:transform var(--transition);
+    }
+    .diff-card:hover { transform:translateY(-10px); box-shadow:0 28px 64px rgba(13,31,45,0.13); }
+    .diff-card:hover::after { transform:scaleX(1); }
+    .diff-card.featured { background:var(--navy); }
+    .diff-card.featured::after { transform:scaleX(1); }
+    .diff-num { font-family:'Playfair Display',Georgia,serif; font-size:56px; font-weight:700; line-height:1; color:var(--gray-200); margin-bottom:22px; }
+    .diff-card.featured .diff-num { color:rgba(255,255,255,0.08); }
+    .diff-icon-wrap {
+      width:48px; height:48px; background:var(--orange-pale); border-radius:11px;
+      display:flex; align-items:center; justify-content:center; margin-bottom:20px;
+      transition:background var(--transition),transform var(--transition);
+    }
+    .diff-icon-wrap svg { width:22px; height:22px; stroke:var(--orange); fill:none; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; }
+    .diff-card.featured .diff-icon-wrap { background:rgba(224,123,42,0.18); }
+    .diff-card:hover .diff-icon-wrap { background:var(--orange); transform:rotate(5deg); }
+    .diff-card:hover .diff-icon-wrap svg { stroke:var(--white); }
+    .diff-card.featured:hover .diff-icon-wrap { background:rgba(224,123,42,0.35); }
+    .diff-title { font-size:16px; font-weight:600; color:var(--navy); margin-bottom:14px; line-height:1.32; }
+    .diff-card.featured .diff-title { color:var(--white); }
+    .diff-body { font-size:13.5px; line-height:1.72; color:var(--gray-600); }
+    .diff-card.featured .diff-body { color:rgba(255,255,255,0.58); }
+    .difference-cta { display:flex; justify-content:center; margin-top:60px; }
+
+    /* ── FOOTER ─────────────────────────────────────────────── */
+    .footer { background:var(--navy); padding:54px 64px; }
+    .footer-inner { max-width:1240px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:28px; }
+    .footer-brand { display:flex; align-items:center; gap:14px; }
+    .footer-name { font-size:15px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--white); margin-bottom:3px; }
+    .footer-copy { font-size:11.5px; color:rgba(255,255,255,0.38); letter-spacing:0.5px; }
+    .footer-links { list-style:none; display:flex; flex-wrap:wrap; gap:28px; }
+    .footer-links a { font-size:10.5px; font-weight:600; letter-spacing:1.8px; text-transform:uppercase; color:rgba(255,255,255,0.45); text-decoration:none; transition:color var(--transition); }
+    .footer-links a:hover { color:var(--orange-2); }
+
+    /* ── FLOATING BUTTONS ───────────────────────────────────── */
+    .fab-group { position:fixed; right:0; top:50%; transform:translateY(-50%); z-index:800; display:flex; flex-direction:column; gap:10px; }
+    .fab {
+      display:flex; align-items:center; gap:10px; text-decoration:none;
+      padding:13px 14px; border-radius:10px 0 0 10px; color:var(--white);
+      font-family:'Inter',sans-serif; font-size:12px; font-weight:600; letter-spacing:0.4px; white-space:nowrap;
+      transform:translateX(calc(100% - 48px));
+      transition:transform 0.35s cubic-bezier(0.4,0,0.2,1), box-shadow 0.35s ease;
+      box-shadow:-4px 4px 20px rgba(0,0,0,0.2);
+    }
+    .fab:hover { transform:translateX(0); box-shadow:-6px 6px 28px rgba(0,0,0,0.28); }
+    .fab svg { width:22px; height:22px; flex-shrink:0; order:2; }
+    .fab-label { order:1; }
+    .fab-whatsapp { background:#25d366; }
+    .fab-whatsapp:hover { background:#1ebe5d; }
+    .fab-message { background:var(--orange); }
+    .fab-message:hover { background:var(--orange-2); }
+
+    /* ── SCROLL REVEAL ──────────────────────────────────────── */
+    .reveal,.reveal-l,.reveal-r { opacity:0; transition:opacity 0.75s ease,transform 0.75s ease; }
+    .reveal   { transform:translateY(40px); }
+    .reveal-l { transform:translateX(-40px); }
+    .reveal-r { transform:translateX(40px); }
+    .reveal.in,.reveal-l.in,.reveal-r.in { opacity:1; transform:translate(0); }
+    .stagger > * { opacity:0; transform:translateY(36px); transition:opacity 0.55s ease,transform 0.55s ease; }
+    .stagger.in > *:nth-child(1){ opacity:1;transform:none;transition-delay:0s; }
+    .stagger.in > *:nth-child(2){ opacity:1;transform:none;transition-delay:0.08s; }
+    .stagger.in > *:nth-child(3){ opacity:1;transform:none;transition-delay:0.16s; }
+    .stagger.in > *:nth-child(4){ opacity:1;transform:none;transition-delay:0.24s; }
+    .stagger.in > *:nth-child(5){ opacity:1;transform:none;transition-delay:0.32s; }
+    .stagger.in > *:nth-child(6){ opacity:1;transform:none;transition-delay:0.40s; }
+    .stagger.in > *:nth-child(7){ opacity:1;transform:none;transition-delay:0.48s; }
+    .stagger.in > *:nth-child(8){ opacity:1;transform:none;transition-delay:0.56s; }
+
+    /* ── KEYFRAMES ──────────────────────────────────────────── */
+    @keyframes fadeInUp  { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
+    @keyframes fadeInRight { from{opacity:0;transform:translate(40px,-50%)} to{opacity:1;transform:translate(0,-50%)} }
+    @keyframes fadeIn    { from{opacity:0} to{opacity:1} }
+    @keyframes floatOrb  { 0%,100%{transform:translateY(0) scale(1)} 50%{transform:translateY(-28px) scale(1.04)} }
+    @keyframes blink     { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(1.4)} }
+    @keyframes scrollDrop{ 0%,100%{transform:scaleY(1);opacity:1} 50%{transform:scaleY(0.5);opacity:0.4} }
   </style>
 </head>
 <body>
-  <main>
-    <h1>BridgeStone</h1>
-    <p>Initial upload in progress.</p>
-  </main>
+
+<!-- NAVBAR -->
+<nav class="nav" id="mainNav">
+  <a href="#" class="nav-logo">
+    <svg class="nav-logo-icon" viewBox="0 0 38 38" fill="none">
+      <path d="M19 2L34 11V27L19 36L4 27V11L19 2Z" fill="#e07b2a"/>
+      <path d="M19 8.5L28.5 14V25L19 30.5L9.5 25V14L19 8.5Z" fill="#0d1f2d"/>
+      <path d="M19 15L23.5 17.6V23L19 25.6L14.5 23V17.6L19 15Z" fill="#e07b2a"/>
+    </svg>
+    <span class="nav-logo-text" id="cms-nav-brand">BRIGHTSTONE</span>
+  </a>
+  <ul class="nav-list" id="cms-nav-links"></ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+
+  <svg class="hero-art" viewBox="0 0 520 480" fill="none" aria-hidden="true">
+    <circle cx="260" cy="240" r="200" stroke="rgba(224,123,42,0.06)" stroke-width="1"/>
+    <circle cx="260" cy="240" r="150" stroke="rgba(224,123,42,0.04)" stroke-width="1"/>
+    <rect x="190" y="60" width="80" height="360" rx="4" fill="rgba(26,51,71,0.75)"/>
+    <rect x="190" y="60" width="80" height="4" fill="rgba(224,123,42,0.6)"/>
+    <rect x="200" y="80"  width="14" height="14" rx="2" fill="rgba(224,123,42,0.55)"/>
+    <rect x="222" y="80"  width="14" height="14" rx="2" fill="rgba(224,123,42,0.3)"/>
+    <rect x="244" y="80"  width="14" height="14" rx="2" fill="rgba(224,123,42,0.6)"/>
+    <rect x="200" y="108" width="14" height="14" rx="2" fill="rgba(224,123,42,0.25)"/>
+    <rect x="222" y="108" width="14" height="14" rx="2" fill="rgba(224,123,42,0.7)"/>
+    <rect x="244" y="108" width="14" height="14" rx="2" fill="rgba(224,123,42,0.4)"/>
+    <rect x="200" y="136" width="14" height="14" rx="2" fill="rgba(224,123,42,0.55)"/>
+    <rect x="222" y="136" width="14" height="14" rx="2" fill="rgba(224,123,42,0.35)"/>
+    <rect x="244" y="136" width="14" height="14" rx="2" fill="rgba(224,123,42,0.6)"/>
+    <rect x="200" y="164" width="14" height="14" rx="2" fill="rgba(224,123,42,0.3)"/>
+    <rect x="222" y="164" width="14" height="14" rx="2" fill="rgba(224,123,42,0.55)"/>
+    <rect x="244" y="164" width="14" height="14" rx="2" fill="rgba(224,123,42,0.45)"/>
+    <rect x="100" y="130" width="70" height="290" rx="4" fill="rgba(20,42,60,0.7)"/>
+    <rect x="100" y="130" width="70" height="4" fill="rgba(224,123,42,0.4)"/>
+    <rect x="110" y="150" width="12" height="12" rx="2" fill="rgba(224,123,42,0.45)"/>
+    <rect x="130" y="150" width="12" height="12" rx="2" fill="rgba(224,123,42,0.25)"/>
+    <rect x="150" y="150" width="12" height="12" rx="2" fill="rgba(224,123,42,0.55)"/>
+    <rect x="290" y="100" width="65" height="320" rx="4" fill="rgba(22,46,65,0.72)"/>
+    <rect x="290" y="100" width="65" height="4" fill="rgba(224,123,42,0.45)"/>
+    <rect x="299" y="120" width="12" height="12" rx="2" fill="rgba(224,123,42,0.6)"/>
+    <rect x="319" y="120" width="12" height="12" rx="2" fill="rgba(224,123,42,0.35)"/>
+    <rect x="339" y="120" width="12" height="12" rx="2" fill="rgba(224,123,42,0.5)"/>
+    <rect x="370" y="180" width="55" height="240" rx="4" fill="rgba(16,36,52,0.65)"/>
+    <rect x="30"  y="200" width="55" height="220" rx="4" fill="rgba(16,36,52,0.6)"/>
+    <ellipse cx="260" cy="430" rx="220" ry="20" fill="rgba(224,123,42,0.08)"/>
+    <line x1="230" y1="60" x2="230" y2="30" stroke="rgba(224,123,42,0.5)" stroke-width="2"/>
+    <circle cx="230" cy="28" r="3" fill="rgba(224,123,42,0.8)"/>
+  </svg>
+
+  <svg class="hero-skyline" viewBox="0 0 1440 180" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0,180 L0,100 L30,100 L30,70 L55,70 L55,90 L80,90 L80,55 L100,55 L100,35 L115,35 L115,55 L145,55 L145,80 L185,80 L185,45 L210,45 L210,25 L228,25 L228,45 L260,45 L260,65 L300,65 L300,85 L340,85 L340,48 L370,48 L370,68 L410,68 L410,95 L450,95 L450,52 L478,52 L478,28 L495,28 L495,52 L530,52 L530,75 L575,75 L575,42 L610,42 L610,65 L655,65 L655,88 L700,88 L700,48 L728,48 L728,30 L745,30 L745,48 L780,48 L780,68 L825,68 L825,38 L860,38 L860,58 L905,58 L905,82 L945,82 L945,50 L980,50 L980,32 L996,32 L996,50 L1030,50 L1030,72 L1080,72 L1080,45 L1115,45 L1115,68 L1160,68 L1160,90 L1205,90 L1205,55 L1240,55 L1240,75 L1280,75 L1280,95 L1320,95 L1320,110 L1380,110 L1380,125 L1440,125 L1440,180 Z" fill="rgba(7,17,28,0.75)"/>
+  </svg>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow" id="cms-hero-eyebrow">
+      <span class="eyebrow-dot" aria-hidden="true"></span>
+    </p>
+    <h1 class="hero-title" id="cms-hero-title"></h1>
+    <p class="hero-subtitle" id="cms-hero-subtitle"></p>
+    <div class="hero-actions">
+      <a href="#difference" class="btn-primary" id="cms-hero-cta">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <div class="scroll-bar"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<div class="services">
+  <div class="section-wrap">
+    <div class="services-header reveal-l">
+      <p class="section-label" id="cms-services-label"></p>
+      <h2 class="section-heading" id="cms-services-heading"></h2>
+    </div>
+    <div class="service-grid stagger" id="cms-service-grid"></div>
+    <div class="services-cta reveal">
+      <a href="#" class="btn-outline" id="cms-services-cta">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- QUOTE BAND -->
+<div class="property-band">
+  <div class="property-band-bg"></div>
+  <svg class="house-art" viewBox="0 0 800 420" fill="none" aria-hidden="true">
+    <polygon points="260,80 370,80 370,320 150,320 150,80" stroke="white" stroke-width="1.5" fill="none"/>
+    <polygon points="100,90 260,10 420,90" stroke="white" stroke-width="1.5" fill="none"/>
+    <rect x="175" y="130" width="55" height="55" stroke="white" stroke-width="1.2" fill="none"/>
+    <rect x="290" y="130" width="55" height="55" stroke="white" stroke-width="1.2" fill="none"/>
+    <rect x="225" y="240" width="70" height="80" stroke="white" stroke-width="1.2" fill="none"/>
+    <rect x="430" y="130" width="200" height="190" stroke="white" stroke-width="1" fill="none"/>
+    <polygon points="400,140 530,70 660,140" stroke="white" stroke-width="1" fill="none"/>
+    <rect x="455" y="165" width="45" height="45" stroke="white" stroke-width="1" fill="none"/>
+    <rect x="560" y="165" width="45" height="45" stroke="white" stroke-width="1" fill="none"/>
+    <rect x="495" y="240" width="50" height="80" stroke="white" stroke-width="1" fill="none"/>
+    <circle cx="100" cy="310" r="30" stroke="white" stroke-width="1" fill="none"/>
+    <line x1="100" y1="320" x2="100" y2="340" stroke="white" stroke-width="1"/>
+    <circle cx="700" cy="310" r="25" stroke="white" stroke-width="1" fill="none"/>
+    <line x1="700" y1="320" x2="700" y2="340" stroke="white" stroke-width="1"/>
+    <line x1="50" y1="340" x2="750" y2="340" stroke="white" stroke-width="1.2"/>
+  </svg>
+  <div class="property-band-content">
+    <blockquote class="reveal-l" id="cms-quote-text"></blockquote>
+    <cite class="reveal-l" id="cms-quote-cite" style="transition-delay:0.15s"></cite>
+  </div>
+</div>
+
+<!-- DIFFERENCE -->
+<div class="difference" id="difference">
+  <div class="section-wrap">
+    <div class="difference-header reveal-l">
+      <p class="section-label" id="cms-diff-label"></p>
+      <h2 class="section-heading" id="cms-diff-heading"></h2>
+    </div>
+    <div class="diff-grid stagger" id="cms-diff-grid"></div>
+    <div class="difference-cta reveal">
+      <a href="#" class="btn-outline" id="cms-diff-cta">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner" id="cms-footer-inner"></div>
+</footer>
+
+<!-- FLOATING BUTTONS -->
+<div class="fab-group">
+  <a class="fab fab-whatsapp" id="cms-fab-wa" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+    <span class="fab-label">WhatsApp</span>
+  </a>
+  <a class="fab fab-message" id="cms-fab-msg" aria-label="Send a quick message">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    <span class="fab-label">Quick Message</span>
+  </a>
+</div>
+
+<script>
+/* ─── ICON MAP ───────────────────────────────────────────────── */
+const ICONS = {
+  operations:    `<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>`,
+  advisory:      `<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>`,
+  amenities:     `<path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>`,
+  finance:       `<line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>`,
+  technology:    `<rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>`,
+  sustainability:`<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/>`,
+  'supply-chain':`<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/>`,
+  risk:          `<path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>`,
+  team:          `<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>`,
+  chart:         `<polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>`,
+  home:          `<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>`,
+  smart:         `<rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/><path d="M7 10h10"/><path d="M7 7h4"/>`
+};
+
+function iconSVG(name, size = 24) {
+  return `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[name] || ICONS.operations}</svg>`;
+}
+
+function arrowSVG() {
+  return `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+}
+
+/* ─── CONTENT LOADER ─────────────────────────────────────────── */
+fetch('content.json')
+  .then(r => r.json())
+  .then(d => {
+
+    /* NAV */
+    document.getElementById('cms-nav-brand').textContent = d.nav.brand;
+    const navLinks = ['Home','About Us','Careers','Contact Us'];
+    document.getElementById('cms-nav-links').innerHTML = navLinks
+      .map(l => `<li><a href="#">${l}</a></li>`).join('');
+
+    /* HERO */
+    document.getElementById('cms-hero-eyebrow').innerHTML =
+      `<span class="eyebrow-dot" aria-hidden="true"></span>${d.hero.eyebrow}`;
+    document.getElementById('cms-hero-title').innerHTML =
+      `${d.hero.title_prefix}<br><em>${d.hero.title_italic}</em> ${d.hero.title_suffix}`;
+    document.getElementById('cms-hero-subtitle').textContent = d.hero.subtitle;
+    const heroCta = document.getElementById('cms-hero-cta');
+    heroCta.innerHTML = d.hero.cta + ' ' + arrowSVG();
+
+    /* SERVICES */
+    document.getElementById('cms-services-label').textContent   = d.services.label;
+    document.getElementById('cms-services-heading').textContent = d.services.heading;
+    document.getElementById('cms-service-grid').innerHTML = d.services.items.map(item => `
+      <div class="service-card">
+        <div class="service-icon-wrap" aria-hidden="true">${iconSVG(item.icon)}</div>
+        <h3 class="service-name">${item.title}</h3>
+        <p class="service-desc">${item.desc}</p>
+      </div>`).join('');
+    const svcCta = document.getElementById('cms-services-cta');
+    svcCta.innerHTML = d.services.cta + ' ' + arrowSVG();
+
+    /* QUOTE */
+    document.getElementById('cms-quote-text').textContent = d.quote.text;
+    document.getElementById('cms-quote-cite').textContent = d.quote.attribution;
+
+    /* DIFFERENCE */
+    document.getElementById('cms-diff-label').textContent   = d.difference.label;
+    document.getElementById('cms-diff-heading').textContent = d.difference.heading;
+    document.getElementById('cms-diff-grid').innerHTML = d.difference.items.map(item => `
+      <div class="diff-card${item.featured ? ' featured' : ''}">
+        <div class="diff-num" aria-hidden="true">${item.num}</div>
+        <div class="diff-icon-wrap" aria-hidden="true">${iconSVG(item.icon, 22)}</div>
+        <h3 class="diff-title">${item.title}</h3>
+        <p class="diff-body">${item.desc}</p>
+      </div>`).join('');
+    const diffCta = document.getElementById('cms-diff-cta');
+    diffCta.innerHTML = d.difference.cta + ' ' + arrowSVG();
+
+    /* FOOTER */
+    document.getElementById('cms-footer-inner').innerHTML = `
+      <div class="footer-brand">
+        <svg width="34" height="34" viewBox="0 0 38 38" fill="none" aria-hidden="true">
+          <path d="M19 2L34 11V27L19 36L4 27V11L19 2Z" fill="#e07b2a"/>
+          <path d="M19 8.5L28.5 14V25L19 30.5L9.5 25V14L19 8.5Z" fill="#0d1f2d"/>
+          <path d="M19 15L23.5 17.6V23L19 25.6L14.5 23V17.6L19 15Z" fill="#e07b2a"/>
+        </svg>
+        <div>
+          <div class="footer-name">${d.footer.brand}</div>
+          <div class="footer-copy">${d.footer.copyright}</div>
+        </div>
+      </div>
+      <ul class="footer-links">
+        ${d.footer.links.map(l => `<li><a href="${l.url}">${l.label}</a></li>`).join('')}
+      </ul>`;
+
+    /* FABs */
+    document.getElementById('cms-fab-wa').href  = d.contact.whatsapp;
+    document.getElementById('cms-fab-msg').href = d.contact.email;
+
+  })
+  .catch(() => console.warn('content.json not found — running with empty content'));
+
+/* ─── NAVBAR SCROLL ──────────────────────────────────────────── */
+const nav = document.getElementById('mainNav');
+const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 48);
+window.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+
+/* ─── SCROLL REVEAL ──────────────────────────────────────────── */
+const observer = new IntersectionObserver(
+  entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); }),
+  { threshold: 0.12, rootMargin: '0px 0px -60px 0px' }
+);
+const observe = () => document.querySelectorAll('.reveal,.reveal-l,.reveal-r,.stagger').forEach(el => observer.observe(el));
+// Re-observe after content loads (cards are injected by JS)
+window.addEventListener('load', observe);
+setTimeout(observe, 500);
+</script>
 </body>
 </html>
