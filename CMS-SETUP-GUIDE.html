@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Brightstone CMS Setup Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+  :root { --navy:#0d1f2d; --orange:#e07b2a; --green:#22c55e; --bg:#f8fafc; --card:#fff; --border:#e2e8f0; --text:#1e293b; --muted:#64748b; }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.65;}
+  .header{background:var(--navy);padding:36px 60px;display:flex;align-items:center;gap:18px;}
+  .header svg{width:44px;height:44px;flex-shrink:0;}
+  .header h1{color:#fff;font-size:24px;font-weight:700;}
+  .header p{color:rgba(255,255,255,0.5);font-size:13px;margin-top:3px;}
+  .main{max-width:860px;margin:0 auto;padding:48px 32px;}
+  h2{font-size:20px;font-weight:700;color:var(--navy);margin-bottom:6px;}
+  .phase{background:var(--card);border:1.5px solid var(--border);border-radius:14px;margin-bottom:28px;overflow:hidden;}
+  .phase-head{padding:18px 24px;display:flex;align-items:center;gap:14px;border-bottom:1px solid var(--border);}
+  .badge{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;color:#fff;flex-shrink:0;}
+  .phase-head h3{font-size:15px;font-weight:700;}
+  .phase-head p{font-size:12px;color:var(--muted);margin-top:2px;}
+  .phase-body{padding:24px;}
+  ol.steps{list-style:none;}
+  ol.steps li{display:flex;gap:14px;padding:11px 0;border-bottom:1px solid var(--border);}
+  ol.steps li:last-child{border-bottom:none;}
+  .sn{width:24px;height:24px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:2px;}
+  .sc strong{display:block;font-size:13px;font-weight:600;margin-bottom:2px;}
+  .sc p{font-size:12.5px;color:var(--muted);}
+  code{background:#f1f5f9;border:1px solid var(--border);border-radius:4px;padding:2px 7px;font-size:12px;font-family:monospace;color:var(--navy);}
+  .tip{background:#f0f9ff;border:1px solid #bae6fd;border-radius:8px;padding:12px 16px;font-size:12.5px;color:#0369a1;margin-top:10px;display:flex;gap:8px;}
+  .warn{background:#fffbeb;border:1px solid #fde68a;border-radius:8px;padding:12px 16px;font-size:12.5px;color:#92400e;margin-top:10px;display:flex;gap:8px;}
+  .success{background:#f0fdf4;border:1px solid #86efac;border-radius:8px;padding:12px 16px;font-size:12.5px;color:#166534;margin-top:10px;display:flex;gap:8px;}
+  .screen{background:var(--navy);border-radius:10px;padding:20px 24px;margin-top:12px;}
+  .screen-bar{display:flex;gap:6px;margin-bottom:14px;}
+  .screen-bar span{width:10px;height:10px;border-radius:50%;}
+  .screen-body{color:rgba(255,255,255,0.75);font-size:12px;font-family:monospace;line-height:1.8;}
+  .screen-body .hl{color:#e07b2a;font-weight:700;}
+  .screen-body .gr{color:#22c55e;}
+  .client-box{background:linear-gradient(135deg,#fff7ed,#fff);border:2px solid #fed7aa;border-radius:12px;padding:24px 28px;margin-bottom:28px;}
+  .client-box h2{color:var(--orange);margin-bottom:14px;font-size:17px;}
+  .client-steps{counter-reset:cs;}
+  .client-steps li{counter-increment:cs;display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid #fed7aa;font-size:13px;}
+  .client-steps li:last-child{border-bottom:none;}
+  .client-steps li::before{content:counter(cs);width:26px;height:26px;background:#e07b2a;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;margin-top:1px;}
+  .footer-note{background:var(--navy);color:rgba(255,255,255,0.5);text-align:center;padding:22px;border-radius:12px;font-size:12px;margin-top:40px;}
+  .footer-note strong{color:#fff;}
+</style>
+</head>
+<body>
+<div class="header">
+  <svg viewBox="0 0 48 48" fill="none">
+    <path d="M24 2L42 13V35L24 46L6 35V13L24 2Z" fill="#e07b2a"/>
+    <path d="M24 10L36 17V31L24 38L12 31V17L24 10Z" fill="#0d1f2d"/>
+    <path d="M24 18L29 21V27L24 30L19 27V21L24 18Z" fill="#e07b2a"/>
+  </svg>
+  <div>
+    <h1>Brightstone CMS — Setup Guide</h1>
+    <p>One-time setup (you do this). After that, client edits everything on their own.</p>
+  </div>
+</div>
+<div class="main">
+  <div class="client-box">
+    <h2>What the client can edit (after setup)</h2>
+    <ol class="client-steps">
+      <li>Go to <strong>yoursite.com/admin</strong> and log in with their email</li>
+      <li>Click any section: Hero, Services, Quote, Difference, Footer</li>
+      <li>Change text, update WhatsApp number, edit card descriptions</li>
+      <li>Click <strong>Save</strong> and the site updates live in about 30 seconds</li>
+      <li>No coding. No developers. No Wix subscription.</li>
+    </ol>
+  </div>
+</div>
+</body>
+</html>
